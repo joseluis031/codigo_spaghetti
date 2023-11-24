@@ -23,4 +23,5 @@ urlpatterns = [
     path('admin/', admin.site.urls),
     path('', index, name='index'),
     path('calcular/', calculator_views.calcular, name="calcular"),
+    
 ]

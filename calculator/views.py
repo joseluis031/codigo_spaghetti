@@ -6,7 +6,7 @@ from django.http import HttpResponse
 from django.views.decorators.csrf import csrf_exempt
 
 def index(request):
-    return render(request, 'calculator/calcular.html')
+    return render(request, 'calculator/ruben.html')
 
 @csrf_exempt
 def calcular(request):
@@ -39,3 +39,4 @@ def obtener_numero(valor):
         return float(valor)
     except ValueError:
         return "Por favor, ingrese un número válido."
+

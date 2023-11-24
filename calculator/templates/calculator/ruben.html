@@ -5,73 +5,94 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Calculadora WEB</title>
+    <link rel="stylesheet" href="style.css">
     <style>
-        body {
-            font-family: Arial, sans-serif;
-            text-align: center;
-            margin: 0;
-            overflow: hidden; /* Evitar barras de desplazamiento por el video */
-            background-image: url('hundred-burgers.jpg'); /* Reemplaza 'nombre_de_tu_imagen.jpg' con el nombre de tu imagen */
-            background-size: cover;
-            background-position: center;
-        }
-
-
+        /* BEGIN: Estilos personalizados */
         #calculadora {
-            width: 300px;
-            margin: 20px auto;
-            border: 2px solid #ccc;
-            padding: 20px;
-            border-radius: 10px;
-            background-color: white;
-            box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+            text-align: center;
+            margin-top: 50px;
         }
 
         #inputNumbers {
-            width: calc(100% - 20px);
-            box-sizing: border-box;
-            margin-bottom: 10px;
-            padding: 10px;
-            font-size: 16px;
-            border: 1px solid #ccc;
-            border-radius: 5px;
-        }
-
-        #info {
-            font-size: 18px;
-            color: green;
-            margin-bottom: 10px;
+            width: 300px;
+            height: 30px;
+            margin-bottom: 20px;
         }
 
         .seccion {
-            margin-top: 20px;
+            margin-bottom: 20px;
         }
 
-        button {
-            padding: 15px 20px;
-            font-size: 16px;
-            margin: 5px;
-            border: 1px solid #ccc;
-            border-radius: 5px;
-            background-color: #ffa500; /* Color naranja */
+        /* Estilos para el color de fondo y el color de texto */
+        body {
+            background-image: url("https://www.youtube.com/watch?v=jh4d4Lm6JG0"); /* Enlace al video de YouTube de Shrek */
+            background-size: cover;
             color: white;
+        }
+
+        /* Estilos para los botones */
+        button {
+            background-color: white; /* Cambiamos el color de fondo de los botones a blanco */
+            color: camel; /* Cambiamos el color de texto de los botones a camel */
+            border: 1px solid camel; /* Agregamos un borde de 1px sólido de color camel */
+            padding: 10px 20px;
+            margin-right: 10px;
             cursor: pointer;
+            transition: background-color 0.3s;
+            border-radius: 10px; /* Hacemos los botones menos redondeados */
         }
 
         button:hover {
-            background-color: #ff8c00; /* Color naranja más oscuro al pasar el cursor */
+            background-color: dodgerblue;
         }
 
-        .grande {
-            font-size: 24px;
-            color: blue;
+        /* Media queries */
+        @media (max-width: 768px) {
+            #inputNumbers {
+                width: 200px;
+            }
         }
+
+        @media (max-width: 480px) {
+            #inputNumbers {
+                width: 150px;
+            }
+        }
+        #video-background {
+            position: fixed;
+            right: 0; 
+            bottom: 0;
+            min-width: 100%; 
+            min-height: 100%;
+            width: auto; 
+            height: auto; 
+            z-index: -100;
+        }
+
+        #calculadora {
+            position: relative;
+            z-index: 1;
+            /* Otros estilos de la calculadora aquí */
+        }
+        /* END: Estilos personalizados */
+        
+        /* BEGIN: Estilos personalizados - Fondo de color leopardo */
+        body {
+            background-image: url("https://example.com/leopard-pattern.jpg"); /* URL de la imagen de fondo de leopardo */
+            background-size: cover;
+        }
+        /* END: Estilos personalizados - Fondo de color leopardo */
     </style>
 </head>
 
 <body>
-
+    <div id="video-background">
+        <video autoplay muted loop id="video-background">
+            <source src="https://www.youtube.com/watch?v=jh4d4Lm6JG0" type="video/mp4">
+        </video>
+    </div>
     <div id="calculadora">
+
         <h1>Calculadora WEB</h1>
 
         <input type="text" id="inputNumbers" placeholder="Introduce números o realiza operaciones binarias">
@@ -107,168 +128,91 @@
             <button id="factorial" onclick="fact()">Factorial</button>
         </div>
 
+        <script src="script.js"></script>
         <script>
-            let primerNumero = 0;
-            let operador = '';
-            let numeros = [];
-    
-            function guardarOperador(op) {
-                const input = document.getElementById('inputNumbers').value;
-                primerNumero = parseFloat(input);
-    
-                if (!Number.isNaN(primerNumero)) {
-                    operador = op;
-                    document.getElementById('inputNumbers').value = '';
-                } else {
-                    alert('Error: Introduce un número válido como primer operando.');
-                }
+            function guardarOperador(operador) {
+                // Lógica para guardar el operador
+                var inputNumbers = document.getElementById("inputNumbers");
+                inputNumbers.value += operador;
             }
-    
-            function calcularResultado() {
-                const input = document.getElementById('inputNumbers').value;
-                const segundoNumero = parseFloat(input);
-    
-                if (!Number.isNaN(segundoNumero)) {
-                    let resultado;
-    
-                    switch (operador) {
-                        case '+':
-                            resultado = primerNumero + segundoNumero;
-                            break;
-                        case '-':
-                            resultado = primerNumero - segundoNumero;
-                            break;
-                        case '*':
-                            resultado = primerNumero * segundoNumero;
-                            break;
-                        case '/':
-                            resultado = primerNumero / segundoNumero;
-                            break;
-                        default:
-                            break;
-                    }
-    
-                    document.getElementById('inputNumbers').value = resultado;
-                    actualizarInfo(resultado);
-                } else {
-                    alert('Error: Introduce un número válido como segundo operando.');
-                }
+
+
+            function calcularResultado(resultado) {
+                var inputNumbers = document.getElementById("inputNumbers");
+                var operacion = inputNumbers.value;
+                var resultadoFinal = eval(operacion);
+                inputNumbers.value = resultadoFinal;
             }
+
             function calcularCuadrado() {
-                const input = document.getElementById('inputNumbers').value;
-                const numero = parseFloat(input);
-
-                if (!Number.isNaN(numero)) {
-                    const cuadrado = numero ** 2;
-                    document.getElementById('inputNumbers').value = cuadrado;
-                    actualizarInfo(cuadrado);
-                } else {
-                    alert('Error: Introduce un número válido.');
-                }
+                var inputNumbers = document.getElementById("inputNumbers");
+                var numero = parseFloat(inputNumbers.value);
+                var resultado = numero * numero;
+                inputNumbers.value = resultado;
             }
-
             function calcularCubo() {
-                const input = document.getElementById('inputNumbers').value;
-                const numero = parseFloat(input);
-
-                if (!Number.isNaN(numero)) {
-                    const cubo = numero ** 3;
-                    document.getElementById('inputNumbers').value = cubo;
-                    actualizarInfo(cubo);
-                } else {
-                    alert('Error: Introduce un número válido.');
-                }
+                var inputNumbers = document.getElementById("inputNumbers");
+                var numero = parseFloat(inputNumbers.value);
+                var resultado = numero * numero * numero;
+                inputNumbers.value = resultado;
             }
 
             function sumatorio() {
-                const input = document.getElementById('inputNumbers').value;
-                const numerosArray = input.split(',').map(Number);
-
-                const sum = numerosArray.reduce((a, b) => a + b, 0);
-                document.getElementById('inputNumbers').value = sum;
-                actualizarInfo(sum);
+                var inputNumbers = document.getElementById("inputNumbers");
+                var operacion = inputNumbers.value;
+                var numeros = operacion.split(",");
+                var suma = 0;
+                for (var i = 0; i < numeros.length; i++) {
+                    suma += parseFloat(numeros[i]);
+                }
+                inputNumbers.value = suma;
             }
 
             function ordenar() {
-                const input = document.getElementById('inputNumbers').value;
-                const numerosArray = input.split(',').map(Number);
-
-                numerosArray.sort((a, b) => a - b);
-                document.getElementById('inputNumbers').value = numerosArray.join(',');
-                actualizarInfo(numerosArray);
+                var inputNumbers = document.getElementById("inputNumbers");
+                var operacion = inputNumbers.value;
+                var numeros = operacion.split(",");
+                var numerosOrdenados = numeros.sort(function(a, b) {
+                    return a - b;
+                });
+                var nuevaOperacion = numerosOrdenados.join(",");
+                inputNumbers.value = nuevaOperacion;
             }
 
             function revertir() {
-                const input = document.getElementById('inputNumbers').value;
-                const numerosArray = input.split(',').map(Number);
-
-                numerosArray.reverse();
-                document.getElementById('inputNumbers').value = numerosArray.join(',');
-                actualizarInfo(numerosArray);
+                var inputNumbers = document.getElementById("inputNumbers");
+                var operacion = inputNumbers.value;
+                var nuevaOperacion = operacion.split("").reverse().join("");
+                inputNumbers.value = nuevaOperacion;
             }
 
             function quitar() {
-                const input = document.getElementById('inputNumbers').value;
-                const numerosArray = input.split(',');
-
-                numerosArray.pop();
-                document.getElementById('inputNumbers').value = numerosArray.join(',');
-                actualizarInfo(numerosArray);
+                var inputNumbers = document.getElementById("inputNumbers");
+                var operacion = inputNumbers.value;
+                var nuevaOperacion = operacion.slice(0, -1);
+                inputNumbers.value = nuevaOperacion;
             }
 
             function mod() {
-                const input = document.getElementById('inputNumbers').value;
-                const numero = parseFloat(input);
-
-                if (!Number.isNaN(numero)) {
-                    const resultado = numero < 0 ? -numero : numero;
-                    document.getElementById('inputNumbers').value = resultado;
-                    actualizarInfo(resultado);
-                } else {
-                    alert('Error: Introduce un número válido.');
-                }
+                var inputNumbers = document.getElementById("inputNumbers");
+                var numero = parseFloat(inputNumbers.value);
+                var resultado = Math.abs(numero);
+                inputNumbers.value = resultado;
             }
 
             function fact() {
-                const input = document.getElementById('inputNumbers').value;
-                const numero = parseInt(input);
-
-                if (!Number.isNaN(numero) && numero >= 0) {
-                    let factorial = 1;
-
-                    for (let i = 2; i <= numero; i++) {
-                        factorial *= i;
-                    }
-
-                    document.getElementById('inputNumbers').value = factorial;
-                    actualizarInfo(factorial);
-                } else {
-                    alert('Error: Introduce un número entero no negativo válido.');
+                var inputNumbers = document.getElementById("inputNumbers");
+                var numero = parseInt(inputNumbers.value);
+                var resultado = 1;
+                
+                for (var i = 1; i <= numero; i++) {
+                    resultado *= i;
                 }
-            }
-
-            function resetCalculadora() {
-                primerNumero = 0;
-                operador = '';
-                numeros = [];
-                document.getElementById('inputNumbers').value = '';
-                document.getElementById('info').textContent = 'Info sobre el número';
-            }
-
-            function actualizarInfo(resultado) {
-                const infoElement = document.getElementById('info');
-
-                if (resultado < 100) {
-                    infoElement.textContent = 'Info: El resultado es menor que 100';
-                } else if (resultado >= 100 && resultado <= 200) {
-                    infoElement.textContent = 'Info: El resultado está entre 100 y 200';
-                } else {
-                    infoElement.textContent = 'Info: El resultado es superior a 200';
-                }
+                
+                inputNumbers.value = resultado;
             }
         </script>
-
-        
+    </div>
 </body>
 
 </html>
