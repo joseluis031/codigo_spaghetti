@@ -6,7 +6,7 @@ from django.http import HttpResponse
 from django.views.decorators.csrf import csrf_exempt
 
 def index(request):
-    return render(request, 'calculator/ruben.html')
+    return render(request, 'calculator/index.html')
 
 @csrf_exempt
 def calcular(request):
