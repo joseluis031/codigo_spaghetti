@@ -23,3 +23,9 @@ La función obtener_numeros ahora devuelve una tupla en lugar de dos valores sep
 
 ## Django
 He creado la calculadora en django, he dejado ahi mi html y el html final pero he ejecutado en el servidor tu primera calculadora
+![image](https://github.com/joseluis031/codigo_spaghetti/assets/91721888/0750619c-0688-436a-95fa-3552ce09d4b1)
+
+
+![image](https://github.com/joseluis031/codigo_spaghetti/assets/91721888/ccb7be24-c3ca-45ad-846d-879229d31628)
+
+![image](https://github.com/joseluis031/codigo_spaghetti/assets/91721888/7d532111-6b46-45a7-9089-9810b936605f)
