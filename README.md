@@ -22,4 +22,4 @@ La función obtener_numeros ahora devuelve una tupla en lugar de dos valores sep
 
 
 ## Django
-He creado la calculadora en django, he dejado ahi mi html pero se ejecuta en el servidor tu calculadora
+He creado la calculadora en django, he dejado ahi mi html y el html final pero he ejecutado en el servidor tu primera calculadora
