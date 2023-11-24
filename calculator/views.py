@@ -30,7 +30,7 @@ def calcular(request):
         else:
             resultado = "Operación no soportada."
 
-        return render(request, 'calculadora_app/index.html', {'resultado': resultado})
+        return render(request, 'calculator/calcular.html', {'resultado': resultado})
 
     return HttpResponse(status=400)
 
